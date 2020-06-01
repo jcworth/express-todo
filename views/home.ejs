@@ -1,5 +1,7 @@
 <h1>To Do</h1>
-<% if (!currentUser) {%>
+<% if (!currentUser) { %>
   <a href="/users/register">Register</a>
   <a href="/users/login">Login</a>
+<% } else { %>
+  <h3>Welcome <%= currentUser.name %></h3>
 <% } %>

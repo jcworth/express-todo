@@ -6,12 +6,6 @@ const expressLayouts = require('express-ejs-layouts');
 
 const app = express()
 
-// Glocal variables - accessible in views
-app.use((req, res, next) => {
-  // Check for current user
-  res.locals.currentUser = req.isAuthenticated();
-  next();
-});
 
 // Passport config
 require('./config/passport.js')(passport);
@@ -31,8 +25,8 @@ app.use(express.static('public'));
 const mongoose = require('mongoose');
 const mongoUri = process.env.MONGOURI;
 mongoose.connect(mongoUri, {useNewUrlParser: true})
-  .then(()=> console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+.then(()=> console.log('MongoDB connected'))
+.catch(err => console.log(err));
 
 // Session handling
 const session = require('express-session');
@@ -46,6 +40,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Glocal variables - accessible in views
+app.use((req, res, next) => {
+  // Check for current user
+  res.locals.currentUser = req.user;
+  next();
+});
 
 // Routes
 app.use('/', require('./routes/index.js'));
