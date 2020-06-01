@@ -50,7 +50,7 @@ router.post('/register', (req, res) => {
             password2
           });
         } else {
-          let newUser = new User({
+          const newUser = new User({
             name,
             email,
             password
@@ -61,8 +61,9 @@ router.post('/register', (req, res) => {
               newUser.password = hash;
               newUser.save()
                 .then(user => {
-                  res.render('/users/login');
-                });
+                  res.redirect('/users/login');
+                })
+                .catch(err => console.log(err))
             });
           });
         }
