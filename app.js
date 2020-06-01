@@ -6,7 +6,6 @@ const expressLayouts = require('express-ejs-layouts');
 
 const app = express()
 
-
 // Passport config
 require('./config/passport.js')(passport);
 
@@ -14,19 +13,19 @@ require('./config/passport.js')(passport);
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false}));
 
-// ejs
+// ejs templating
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
-// Static file serving
+// Static file serving - assets
 app.use(express.static('public'));
 
 // MongoDB connection
 const mongoose = require('mongoose');
 const mongoUri = process.env.MONGOURI;
 mongoose.connect(mongoUri, {useNewUrlParser: true})
-.then(()=> console.log('MongoDB connected'))
-.catch(err => console.log(err));
+  .then(()=> console.log('MongoDB connected'))
+  .catch(err => console.log(err));
 
 // Session handling
 const session = require('express-session');
