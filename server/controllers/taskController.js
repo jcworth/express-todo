@@ -1,13 +1,13 @@
 const Task = require('../models/Task');
 
 exports.task_index = function(req, res) {
-  // Task.find({}, (err, tasks) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     res.render('tasks/index', { data: tasks, test: 'hi' })
-  //   };
-  // })
+  Task.find({}, (err, tasks) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('tasks/index', { tasks })
+    };
+  })
 };
 
 exports.task_find = function(req, res) {

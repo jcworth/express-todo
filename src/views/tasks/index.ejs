@@ -1,4 +1,9 @@
 <h1>Tasks</h1>
-<% if (data) { %>
-  <h2><%= test %></h2>
+<% if (tasks) { %>
+  <% tasks.forEach((task) => { %>
+    <div class="task-instance">
+      <h3><%= task.title %></h3>
+      <p><%= task.description %></p>
+  </div>
+ <% }); %>
 <% } %>
