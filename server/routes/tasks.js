@@ -11,6 +11,7 @@ router.post('/new', ensureAuth, taskController.task_create);
 
 // Read
 router.get('/', ensureAuth, taskController.task_index)
+router.get('/:id', ensureAuth, taskController.task_show)
 
 // Update
 

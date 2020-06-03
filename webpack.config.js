@@ -15,6 +15,9 @@ module.exports = {
     contentBase: './dist',
     hot: true
   },
+  watchOptions: {
+    aggregateTimeout: 600
+  },
   module: {
     rules: [
       {

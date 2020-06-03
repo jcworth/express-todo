@@ -10,9 +10,15 @@ exports.task_index = function(req, res) {
   })
 };
 
-exports.task_find = function(req, res) {
-  // Task.findById(req.params.id)
-}
+exports.task_show = function(req, res) {
+  Task.findById(req.params.id, (err, task) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('tasks/show', { task });
+    };
+  })
+};
 
 exports.task_new = function(req, res) {
   res.render('tasks/new');
