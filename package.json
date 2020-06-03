@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "rm -rf dist && webpack && node server/app.js",
+    "dev": "rm -rf dist && webpack --display=minimal && node server/app.js",
     "start": "node app.js"
   },
   "author": "",
