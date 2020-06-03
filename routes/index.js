@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {ensureAuth} = require('../helpers/auth');
+
+
 router.get('/', (req, res) => {
   res.render('home')
 })
