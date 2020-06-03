@@ -1,10 +1,22 @@
 const dotenv = require('dotenv').config()
 const express = require('express');
 const passport = require('passport');
+const path = require('path');
 const port = process.env.PORT || 3000
 const expressLayouts = require('express-ejs-layouts');
 
 const app = express()
+
+//  Webpack dev middleware
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const config = require('../webpack.config');
+const compiler = webpack(config);
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: config.output.publicPath,
+}));
+app.use(webpackHotMiddleware(compiler));
 
 // Passport config
 require('./config/passport.js')(passport);
@@ -15,10 +27,11 @@ app.use(bodyParser.urlencoded({ extended: false}));
 
 // ejs templating
 app.use(expressLayouts);
+app.set('views', path.join(__dirname, '../src/views'));
 app.set('view engine', 'ejs');
 
 // Static file serving - assets
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 // MongoDB connection
 const mongoose = require('mongoose');
