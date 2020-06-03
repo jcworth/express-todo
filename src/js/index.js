@@ -1,4 +1,6 @@
-// const form = document.querySelector('form');
+console.log('test');
+console.log('logging');
+
 
 // form.addEventListener('submit', (e) => {
 //   e.preventDefault();

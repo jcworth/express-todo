@@ -27,7 +27,14 @@ module.exports = {
           }
         }
       },
-
+      {
+        test: /\.ejs$/,
+        use: [
+          {
+            loader: "ejs-webpack-loader",
+          }
+        ]
+      },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
         use: [
