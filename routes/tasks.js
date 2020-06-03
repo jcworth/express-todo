@@ -2,16 +2,10 @@ const express = require('express');
 const router = express.Router();
 const {ensureAuth} = require('../helpers/auth');
 
-const Task = require('../models/Task');
+// const Task = require('../models/Task');
+const taskController = require('../controllers/taskController');
 
-router.get('/', ensureAuth, (req, res) => {
-  Task.find({}, (err, tasks) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('tasks', {data: tasks, test: 'hi'})
-    };
-  })
-})
+// Index
+router.get('/', ensureAuth, taskController.task_list)
 
 module.exports = router;
