@@ -1,6 +1,6 @@
 const Task = require('../models/Task');
 
-exports.task_list = function(req, res) {
+exports.task_index = function(req, res) {
   // Task.find({}, (err, tasks) => {
   //   if (err) {
   //     console.log(err);
@@ -10,7 +10,7 @@ exports.task_list = function(req, res) {
   // })
 };
 
-exports.task_detail = function(req, res) {
+exports.task_find = function(req, res) {
   // Task.findById(req.params.id)
 }
 
@@ -50,11 +50,11 @@ exports.task_create = function(req, res) {
   };
 };
 
-exports.task_update_get = function(req, res) {
+exports.task_edit = function(req, res) {
 
 }
 
-exports.task_update_post = function(req, res) {
+exports.task_update = function(req, res) {
 
 }
 
