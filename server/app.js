@@ -25,6 +25,10 @@ require('./config/passport.js')(passport);
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false}));
 
+// Method override
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
 // ejs templating
 app.use(expressLayouts);
 app.set('views', path.join(__dirname, '../src/views'));

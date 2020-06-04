@@ -1,6 +1,7 @@
 const Task = require('../models/Task');
 
 exports.task_index = function(req, res) {
+  // let
   Task.find({ owner_id : req.user.id }, (err, tasks) => {
     if (err) {
       console.log(err);
@@ -57,17 +58,30 @@ exports.task_create = function(req, res) {
 };
 
 exports.task_edit = function(req, res) {
-
+  // Find article id
+  // Go to edit view
+  // enter edits + submit
 }
 
 exports.task_update = function(req, res) {
-
+  // Post edits from form
+  // Save to database
+  // Redirect to updated task view
 }
 
-exports.task_delete_get = function(req, res) {
+// exports.task_delete_get = function(req, res) {
 
-}
+// }
 
-exports.task_delete_post = function (req, res) {
-
+exports.task_delete = function (req, res) {
+  console.log(req.params);
+  // res.redirect('/tasks');
+  Task.deleteOne({ id: req.params.id }, (err, task) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // res.redirect('tasks');
+      console.log('success');
+    };
+  })
 }

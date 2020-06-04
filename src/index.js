@@ -4,5 +4,3 @@ import './js/index.js'
 if (module.hot) {
   module.hot.accept();
 };
-
-console.log('hi');

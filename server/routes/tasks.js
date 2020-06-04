@@ -16,5 +16,6 @@ router.get('/:id', ensureAuth, taskController.task_show)
 // Update
 
 // Delete
+router.delete('/:id', ensureAuth, taskController.task_delete);
 
 module.exports = router;

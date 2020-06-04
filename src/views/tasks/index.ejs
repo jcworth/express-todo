@@ -4,6 +4,8 @@
     <div class="task-card">
       <a href="/tasks/<%=task.id%>"><h3><%= task.title %></h3></a>
       <p><%= task.description %></p>
+      <%- include ('../partials/deleteForm.ejs', { url : `/tasks/${task.id}`}) %>
   </div>
  <% }); %>
 <% } %>
+<a href="/task/new">Add a task</a>
