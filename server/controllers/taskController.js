@@ -73,15 +73,29 @@ exports.task_update = function(req, res) {
 
 // }
 
-exports.task_delete = function (req, res) {
-  console.log(req.params);
-  // res.redirect('/tasks');
-  Task.deleteOne({ id: req.params.id }, (err, task) => {
-    if (err) {
-      console.log(err);
+exports.task_delete = async function (req, res) {
+  // console.log(req.params);
+  let task;
+  try {
+    task = await Task.findById(req.params.id);
+    await task.remove();
+    console.log('Successfully deleted');
+    res.redirect('/tasks');
+  } catch {
+    if (task == null) {
+      console.log('Error: Task not found');
+      res.redirect('/tasks')
     } else {
-      // res.redirect('tasks');
-      console.log('success');
+      console.log('Error: Unable to remove from database');
+      res.redirect('/tasks')
     };
-  })
+  };
+  // Task.deleteOne({ id: req.params.id }, (err, task) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     // res.redirect('tasks');
+  //     console.log('success');
+  //   };
+  // })
 }
