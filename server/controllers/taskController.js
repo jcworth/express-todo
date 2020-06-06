@@ -1,7 +1,7 @@
 const Task = require('../models/Task');
+const moment = require('moment');
 
 exports.task_index = function(req, res) {
-  // let
   Task.find({ owner_id : req.user.id }, (err, tasks) => {
     if (err) {
       console.log(err);
@@ -61,6 +61,14 @@ exports.task_edit = function(req, res) {
   // Find article id
   // Go to edit view
   // enter edits + submit
+  Task.findById(req.params.id, (err, task) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // let taskDate = new Date(task.date_due).toISOString();
+      res.render('tasks/edit', { task, moment });
+    };
+  })
 }
 
 exports.task_update = function(req, res) {
@@ -68,10 +76,6 @@ exports.task_update = function(req, res) {
   // Save to database
   // Redirect to updated task view
 }
-
-// exports.task_delete_get = function(req, res) {
-
-// }
 
 exports.task_delete = async function (req, res) {
   // console.log(req.params);
@@ -90,12 +94,4 @@ exports.task_delete = async function (req, res) {
       res.redirect('/tasks')
     };
   };
-  // Task.deleteOne({ id: req.params.id }, (err, task) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     // res.redirect('tasks');
-  //     console.log('success');
-  //   };
-  // })
 }
