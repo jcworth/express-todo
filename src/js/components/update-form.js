@@ -12,6 +12,11 @@ if (updateForm) {
 function updateTask(form, taskId) {
   fetch('/tasks/edit/' + taskId, {
     body: form,
-    method: 'PUT'
-  });
+    method: 'PUT',
+  })
+    .then(response => {
+      if (response.redirected) {
+        window.location.href = response.url;
+      }
+    });
 };

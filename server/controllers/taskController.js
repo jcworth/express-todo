@@ -76,10 +76,14 @@ exports.task_update = async function(req, res) {
     task.title = req.body.title;
     task.description = req.body.description;
     task.date_due = req.body.date_due;
-    task.save((err) => {
-      if (err) throw err;
+    await task.save((err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Task updated');
+        res.redirect(303, '/tasks/' + task.id);
+      }
     });
-    res.redirect(303, '/tasks/' + task.id);
   } catch(err) {
     console.log(err);
   };
