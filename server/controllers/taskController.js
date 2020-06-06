@@ -58,24 +58,34 @@ exports.task_create = function(req, res) {
 };
 
 exports.task_edit = function(req, res) {
-  // Find article id
-  // Go to edit view
-  // enter edits + submit
   Task.findById(req.params.id, (err, task) => {
     if (err) {
       console.log(err);
     } else {
-      // let taskDate = new Date(task.date_due).toISOString();
       res.render('tasks/edit', { task, moment });
     };
-  })
-}
+  });
+};
 
-exports.task_update = function(req, res) {
-  // Post edits from form
-  // Save to database
+exports.task_update = async function(req, res) {
+  // Post edits from form x
+  // Save to database x
   // Redirect to updated task view
-}
+  try {
+    let task = await Task.findById(req.params.id);
+    task.title = req.body.title;
+    task.description = req.body.description;
+    task.date_due = req.body.date_due;
+    task.save((err) => {
+      if (err) throw err;
+    });
+    res.redirect(303, '/tasks/' + task.id);
+  } catch(err) {
+    console.log(err);
+  };
+};
+
+
 
 exports.task_delete = async function (req, res) {
   // console.log(req.params);
@@ -94,4 +104,4 @@ exports.task_delete = async function (req, res) {
       res.redirect('/tasks')
     };
   };
-}
+};

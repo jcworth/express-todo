@@ -21,9 +21,14 @@ app.use(webpackHotMiddleware(compiler));
 // Passport config
 require('./config/passport.js')(passport);
 
-// body-parser
+// body-parser - request body reading
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false}));
+
+// multer - multipart form reading
+const multer = require('multer');
+const upload = multer();
+app.use(upload.array());
 
 // Method override
 const methodOverride = require('method-override');

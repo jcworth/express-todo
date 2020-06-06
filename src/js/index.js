@@ -1,1 +1,1 @@
-import './components/crud-buttons';
+import './components/update-form';
