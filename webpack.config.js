@@ -15,6 +15,9 @@ module.exports = {
     contentBase: './dist',
     hot: true
   },
+  watchOptions: {
+    aggregateTimeout: 600
+  },
   module: {
     rules: [
       {
@@ -27,7 +30,14 @@ module.exports = {
           }
         }
       },
-
+      {
+        test: /\.ejs$/,
+        use: [
+          {
+            loader: "ejs-webpack-loader",
+          }
+        ]
+      },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
         use: [

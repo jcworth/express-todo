@@ -21,9 +21,18 @@ app.use(webpackHotMiddleware(compiler));
 // Passport config
 require('./config/passport.js')(passport);
 
-// body-parser
+// body-parser - request body reading
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false}));
+
+// multer - multipart form reading
+const multer = require('multer');
+const upload = multer();
+app.use(upload.array());
+
+// Method override
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 // ejs templating
 app.use(expressLayouts);
@@ -63,5 +72,8 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/tasks', require('./routes/tasks.js'));
+app.all("*", (req, res) => {
+  return res.status(404).send('Page not found')
+});
 
 app.listen(port, console.log(`Server listening on: ${port}`));

@@ -1,7 +1,2 @@
-html {
-  font-family: 'Inter', sans-serif;
-}
-
-body {
-  background: red;
-}
+@import 'components/global-styles';
+@import 'components/task';

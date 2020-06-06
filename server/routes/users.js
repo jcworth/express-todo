@@ -10,7 +10,7 @@ const User = require('../models/User.js');
 
 // Login handler
 router.get('/login', loggedIn, (req, res) => {
-  res.render('login');
+  res.render('users/login');
 });
 
 router.post('/login', passport.authenticate('local', {
@@ -20,7 +20,7 @@ router.post('/login', passport.authenticate('local', {
 
 // Registration handler
 router.get('/register', loggedIn, (req, res) => {
-  res.render('register');
+  res.render('users/register');
 });
 
 router.post('/register', (req, res) => {
@@ -40,7 +40,7 @@ router.post('/register', (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render('register', {
+    res.render('users/register', {
       errors,
       name,
       email,
@@ -52,7 +52,7 @@ router.post('/register', (req, res) => {
       .then(user => {
         if (user) {
           errors.push({msg: 'Email already registered'});
-          res.render('register', {
+          res.render('users/register', {
             errors,
             name,
             email,

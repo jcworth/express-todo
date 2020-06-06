@@ -1,0 +1,4 @@
+<h1><%= task.title %></h1>
+<p><%= task.description %></p>
+<a href="/tasks/edit/<%= task.id %>"><button type="submit">Edit</button></a>
+<%- include ('../partials/deleteForm.ejs', { url: `/tasks/${task.id}` }) %>

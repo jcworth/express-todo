@@ -5,7 +5,19 @@ const {ensureAuth} = require('../helpers/auth');
 // const Task = require('../models/Task');
 const taskController = require('../controllers/taskController');
 
-// Index
-router.get('/', ensureAuth, taskController.task_list)
+// Create
+router.get('/new', ensureAuth, taskController.task_new);
+router.post('/new', ensureAuth, taskController.task_create);
+
+// Read
+router.get('/', ensureAuth, taskController.task_index);
+router.get('/:id', ensureAuth, taskController.task_show);
+
+// Update
+router.get('/edit/:id', ensureAuth, taskController.task_edit);
+router.put('/edit/:id', ensureAuth, taskController.task_update);
+
+// Delete
+router.delete('/:id', ensureAuth, taskController.task_delete);
 
 module.exports = router;
